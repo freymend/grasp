@@ -19,7 +19,11 @@ flyInstall.stderr.on("data", (data) => {
     console.error(`${data}`);
 });
 
-const extensions = ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"];
+const extensions = [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "vue.volar",
+];
 
 for (const extension of extensions) {
     console.log(`Installing ${extension}`);
