@@ -63,7 +63,7 @@ app.get(
         const { data, error } = await supabase
             .from("courses")
             .select("course_major, course_number, course_title")
-            .textSearch("major_number_title", query);
+            .ilike("major_number_title", `%${query}%`);
         if (error) {
             reply.status(500);
             return error;
