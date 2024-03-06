@@ -13,7 +13,7 @@
         ]
     },
     "extends": [
-        "eslint:recommended",
+        "typescript",
         "plugin:prettier/recommended",
         "prettier"
     ],
