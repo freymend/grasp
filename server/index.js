@@ -5,8 +5,27 @@ export const app = Fastify({
     logger: true,
 });
 
-app.get("/", async (request, reply) => {
-    return "Hello World";
+await app.register(import("@fastify/swagger"));
+await app.register(import("@fastify/swagger-ui"), {
+    routePrefix: "/",
+    uiConfig: {
+        docExpansion: "full",
+        deepLinking: false,
+    },
+    uiHooks: {
+        onRequest: function (request, reply, next) {
+            next();
+        },
+        preHandler: function (request, reply, next) {
+            next();
+        },
+    },
+    staticCSP: true,
+    transformStaticCSP: (header) => header,
+    transformSpecification: (swaggerObject, request, reply) => {
+        return swaggerObject;
+    },
+    transformSpecificationClone: true,
 });
 
 app.get(
@@ -35,7 +54,7 @@ app.get(
                     },
                 },
             },
-            summary: "Search for courses. ",
+            summary: "Search for UW INFO courses.",
         },
     },
     async (request, reply) => {
