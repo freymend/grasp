@@ -9,13 +9,13 @@
   "type": "module",
   "scripts": {
     "setup": "node setup.js",
-    "start": "node server/index.js"
+    "start": "node --env-file=.env server/index.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "fastify": "^4.25.2",
-    "supabase": "^1.131.5"
+    "@supabase/supabase-js": "^2.39.7",
+    "fastify": "^4.25.2"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
