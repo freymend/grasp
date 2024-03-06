@@ -1,7 +1,6 @@
 {
     "$schema": "http://json.schemastore.org/eslintrc",
     "plugins": [
-        "vue",
         "prettier"
     ],
     "root": true,
@@ -15,11 +14,9 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:vue/vue3-recommended",
         "plugin:prettier/recommended",
         "prettier"
     ],
-    "parser": "vue-eslint-parser",
     "parserOptions": {
         "ecmaVersion": 2023,
         "sourceType": "module"
