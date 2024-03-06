@@ -54,7 +54,8 @@ app.get(
                     },
                 },
             },
-            summary: "Search for UW INFO courses.",
+            summary:
+                "Search for UW INFO courses. The search is case-insensitive and matches any part of the course major, number, or title.",
         },
     },
     async (request, reply) => {
