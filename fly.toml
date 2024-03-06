@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for grasp-api on 2024-01-23T11:50:17-08:00
+# fly.toml app configuration file generated for grasp-api on 2024-03-05T17:12:01-08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "grasp-api"
-primary_region = "sea"
+app = 'grasp-api'
+primary_region = 'sea'
 
 [build]
 
@@ -14,9 +14,9 @@ primary_region = "sea"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
+  processes = ['app']
 
 [[vm]]
-  cpu_kind = "shared"
+  cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
