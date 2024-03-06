@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import { supabase } from "./db/index.js";
 
 export const app = Fastify({
     logger: true,
