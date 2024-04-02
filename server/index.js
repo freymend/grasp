@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import cors from "@fastify/cors";
 
 export const app = Fastify({
     logger: true,
@@ -25,6 +26,10 @@ await app.register(import("@fastify/swagger-ui"), {
         return swaggerObject;
     },
     transformSpecificationClone: true,
+});
+
+await app.register(cors, {
+    origin: "*",
 });
 
 await app.register(import("./routes/search.js"), { prefix: "/search" });
