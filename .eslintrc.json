@@ -13,7 +13,6 @@
         ]
     },
     "extends": [
-        "typescript",
         "plugin:prettier/recommended",
         "prettier"
     ],
