@@ -39,6 +39,10 @@ async function routes(fastify, _) {
         async (request, reply) => {
             // @ts-ignore
             const { query } = request.params;
+            if (query === "") {
+                return "[]";
+            }
+
             const { data, error } = await supabase
                 .from("courses")
                 .select("course_major, course_number, course_title")
