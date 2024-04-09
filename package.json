@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@fastify/cors": "^9.0.1",
+    "@fastify/multipart": "^8.2.0",
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@supabase/supabase-js": "^2.41.1",
