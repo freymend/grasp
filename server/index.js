@@ -1,8 +1,12 @@
-import Fastify from "fastify";
 import cors from "@fastify/cors";
+import { ajvFilePlugin, fastifyMultipart } from "@fastify/multipart";
+import Fastify from "fastify";
 
 export const app = Fastify({
     logger: true,
+    ajv: {
+        plugins: [ajvFilePlugin],
+    },
 });
 
 await app.register(import("@fastify/swagger"), {
@@ -35,8 +39,12 @@ await app.register(import("@fastify/swagger-ui"), {
 await app.register(cors, {
     origin: "*",
 });
+await app.register(fastifyMultipart, {
+    attachFieldsToBody: true,
+});
 
 await app.register(import("./routes/search.js"), { prefix: "/search" });
+await app.register(import("./routes/upload.js"), { prefix: "/upload" });
 
 try {
     await app.listen({ port: 3000, host: "0.0.0.0" });

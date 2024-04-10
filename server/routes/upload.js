@@ -14,12 +14,21 @@ async function routes(fastify, _) {
                 body: {
                     type: "object",
                     properties: {
-                        course_major: { type: "string" },
-                        course_number: { type: "number" },
-                        course_title: { type: "string" },
-                        professor: { type: "string" },
-                        quarter: { type: "string" },
-                        pdf: { type: "object" },
+                        course_major: {
+                            properties: { value: { type: "string" } },
+                        },
+                        course_number: {
+                            properties: { value: { type: "number" } },
+                        },
+                        course_title: {
+                            properties: { value: { type: "string" } },
+                        },
+                        professor: {
+                            properties: { value: { type: "string" } },
+                        },
+                        quarter: { properties: { value: { type: "string" } } },
+                        year: { properties: { value: { type: "number" } } },
+                        pdf: { isFile: true },
                     },
                 },
                 response: {
