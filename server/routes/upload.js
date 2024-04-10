@@ -47,22 +47,21 @@ async function routes(fastify, _) {
             },
         },
         async (request, reply) => {
-            // const json = await request.file();
-            const pdf = await request.body.pdf.toBuffer();
-
-            console.log(await request.body.pdf.toBuffer());
-
             const { data, error } = await supabase.storage
-                .from("test_pdf")
-                .upload("test.pdf", await pdf, {
-                    contentType: "application/pdf",
-                });
+                .from("waiting_courses_syllabuses_pdf")
+                .upload(
+                    `${request.body.course_major.value}_${request.body.course_number.value}_${request.body.course_title.value}/${request.body.year.value}_${request.body.quarter.value}_${request.body.professor.value}.pdf`,
+                    await request.body.pdf.toBuffer(),
+                    {
+                        contentType: "application/pdf",
+                    },
+                );
 
             if (error) {
                 reply.code(500);
                 return { message: error.message };
             }
-            return "success";
+            return `Successfully uploaded ${request.body.pdf.filename}!`;
         },
     );
 }
