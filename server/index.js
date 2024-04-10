@@ -5,7 +5,11 @@ export const app = Fastify({
     logger: true,
 });
 
-await app.register(import("@fastify/swagger"));
+await app.register(import("@fastify/swagger"), {
+    openapi: {
+        openapi: "3.1.0",
+    },
+});
 await app.register(import("@fastify/swagger-ui"), {
     routePrefix: "/",
     uiConfig: {
