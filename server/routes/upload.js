@@ -1,4 +1,5 @@
 import { supabase } from "../db/index.js";
+import { randomUUID } from "crypto";
 
 /**
  *
@@ -50,7 +51,7 @@ async function routes(fastify, _) {
             const { data, error } = await supabase.storage
                 .from("waiting_courses_syllabuses_pdf")
                 .upload(
-                    `${request.body.course_major.value}_${request.body.course_number.value}_${request.body.course_title.value}/${request.body.year.value}_${request.body.quarter.value}_${request.body.professor.value}.pdf`.replaceAll(
+                    `${request.body.course_major.value}_${request.body.course_number.value}_${request.body.course_title.value}/${request.body.year.value}_${request.body.quarter.value}_${request.body.professor.value}_${randomUUID()}.pdf`.replaceAll(
                         " ",
                         "-",
                     ),
