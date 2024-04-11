@@ -50,7 +50,10 @@ async function routes(fastify, _) {
             const { data, error } = await supabase.storage
                 .from("waiting_courses_syllabuses_pdf")
                 .upload(
-                    `${request.body.course_major.value}_${request.body.course_number.value}_${request.body.course_title.value}/${request.body.year.value}_${request.body.quarter.value}_${request.body.professor.value}.pdf`,
+                    `${request.body.course_major.value}_${request.body.course_number.value}_${request.body.course_title.value}/${request.body.year.value}_${request.body.quarter.value}_${request.body.professor.value}.pdf`.replaceAll(
+                        " ",
+                        "-",
+                    ),
                     await request.body.pdf.toBuffer(),
                     {
                         contentType: "application/pdf",
