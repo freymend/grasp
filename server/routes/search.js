@@ -39,14 +39,12 @@ async function routes(fastify, _) {
         async (request, reply) => {
             // @ts-ignore
             const { query } = request.params;
-            if (query === "") {
-                return "[]";
-            }
-
             const { data, error } = await supabase
                 .from("courses")
                 .select("course_major, course_number, course_title")
-                .ilike("major_number_title", `%${query}%`);
+                .ilike("major_number_title", `%${query}%`)
+                .order("course_number")
+                .limit(5);
             if (error) {
                 reply.status(500);
                 return error;
