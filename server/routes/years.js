@@ -13,7 +13,8 @@ async function routes(fastify, _) {
                 response: {
                     200: { type: "array", items: { type: "number" } },
                 },
-                summary: "Get all years stored in the database",
+                summary:
+                    "Get all years stored in the database. Use this to populate the year filter in the frontend.",
             },
         },
         async (request, reply) => {
