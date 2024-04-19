@@ -17,7 +17,7 @@ await app.register(import("@fastify/swagger"), {
 await app.register(import("@fastify/swagger-ui"), {
     routePrefix: "/",
     uiConfig: {
-        docExpansion: "full",
+        docExpansion: "list",
         deepLinking: false,
     },
     uiHooks: {
