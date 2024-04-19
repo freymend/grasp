@@ -11,6 +11,7 @@ async function routes(fastify, _) {
         "/",
         {
             schema: {
+                tags: ["upload"],
                 consumes: ["multipart/form-data"],
                 body: {
                     type: "object",

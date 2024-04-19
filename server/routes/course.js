@@ -17,6 +17,7 @@ async function routes(fastify, _) {
         "/",
         {
             schema: {
+                tags: ["course"],
                 response: {
                     200: {
                         type: "array",
@@ -48,6 +49,7 @@ async function routes(fastify, _) {
         "/:course_major/:course_number/:course_title",
         {
             schema: {
+                tags: ["course"],
                 params: {
                     course_major: { type: "string" },
                     course_number: { type: "string" },

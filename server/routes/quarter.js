@@ -10,6 +10,7 @@ async function routes(fastify, _) {
         "/",
         {
             schema: {
+                tags: ["quarter"],
                 response: {
                     200: { type: "array", items: { type: "string" } },
                 },
