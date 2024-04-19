@@ -10,6 +10,7 @@ async function routes(fastify, _) {
         "/:query",
         {
             schema: {
+                tags: ["search"],
                 params: {
                     query: { type: "string" },
                 },
