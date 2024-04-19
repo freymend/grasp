@@ -54,10 +54,27 @@ async function routes(fastify, _) {
                     course_title: { type: "string" },
                 },
                 response: {
-                    // 200: {
-                    //     type: "array",
-                    //     items: { type: "number" },
-                    // },
+                    200: {
+                        type: "object",
+                        properties: {
+                            course_major: { type: "string" },
+                            course_number: { type: "string" },
+                            course_title: { type: "string" },
+                            course_description: { type: "string" },
+                            offered: {
+                                type: "array",
+                                items: {
+                                    type: "object",
+                                    properties: {
+                                        year: { type: "number" },
+                                        quarter: { type: "string" },
+                                        professor: { type: "string" },
+                                        pdf: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
                     500: {
                         type: "object",
                         properties: {
@@ -95,6 +112,7 @@ async function routes(fastify, _) {
                         year: row.year,
                         quarter: row.quarter,
                         professor: `${row.first_name} ${row.last_name}`,
+                        pdf: undefined,
                     }))
                     .sort(
                         (a, b) =>
