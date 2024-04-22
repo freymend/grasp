@@ -49,10 +49,17 @@ async function routes(fastify, _) {
             },
         },
         async (request, reply) => {
+            const course_major = request.body.course_major.value.toLowerCase();
+            const course_number = request.body.course_number.value;
+            const course_title = request.body.course_title.value.toLowerCase();
+            const professor = request.body.professor.value.toLowerCase();
+            const quarter = request.body.quarter.value;
+            const year = request.body.year.value;
+
             const { data, error } = await supabase.storage
                 .from("waiting_courses_syllabuses_pdf")
                 .upload(
-                    `${request.body.course_major.value}_${request.body.course_number.value}_${request.body.course_title.value}/${request.body.year.value}_${request.body.quarter.value}_${request.body.professor.value}_${randomUUID()}.pdf`.replaceAll(
+                    `${course_major}_${course_number}_${course_title}/${year}_${quarter}_${professor}_${randomUUID()}.pdf`.replaceAll(
                         " ",
                         "-",
                     ),

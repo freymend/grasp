@@ -49,6 +49,7 @@ await app.register(import("./routes/quarter.js"), { prefix: "/quarter" });
 await app.register(import("./routes/years.js"), { prefix: "/years" });
 await app.register(import("./routes/professor.js"), { prefix: "/professor" });
 await app.register(import("./routes/course.js"), { prefix: "/course" });
+await app.register(import("./routes/pdf.js"), { prefix: "/pdf" });
 
 try {
     await app.listen({ port: 3000, host: "0.0.0.0" });
