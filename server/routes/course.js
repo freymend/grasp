@@ -85,7 +85,7 @@ async function routes(fastify, _) {
                     },
                 },
                 summary:
-                    "Get all years for a specific course. Use this to populate the years filter in the frontend.",
+                    "Get all the times a course has been offered and the professors who taught it.",
             },
         },
         async (request, reply) => {
@@ -109,18 +109,32 @@ async function routes(fastify, _) {
                 course_number: course_number,
                 course_title: course_title,
                 course_description: data[0].course_description,
-                offered: data
-                    .map((row) => ({
-                        year: row.year,
-                        quarter: row.quarter,
-                        professor: `${row.first_name} ${row.last_name}`,
-                        pdf: undefined,
-                    }))
-                    .sort(
-                        (a, b) =>
-                            b.year - a.year ||
-                            quarterOrder[b.quarter] - quarterOrder[a.quarter],
-                    ),
+                offered: (
+                    await Promise.all(
+                        data.map(async (row) => {
+                            const { data, error } = await supabase.storage
+                                .from("courses_syllabuses_pdf")
+                                .list(
+                                    `${course_major}_${course_number}_${course_title.replaceAll(" ", "-")}`,
+                                    {
+                                        search: `${row.year}_${row.quarter}_${row.first_name}_${row.last_name}`,
+                                    },
+                                );
+
+                            const pdf_key = data[0]?.name;
+                            return {
+                                year: row.year,
+                                quarter: row.quarter,
+                                professor: `${row.first_name} ${row.last_name}`,
+                                pdf: pdf_key,
+                            };
+                        }),
+                    )
+                ).sort(
+                    (a, b) =>
+                        b.year - a.year ||
+                        quarterOrder[b.quarter] - quarterOrder[a.quarter],
+                ),
             };
         },
     );
