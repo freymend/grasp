@@ -120,8 +120,15 @@ async function routes(fastify, _) {
                                         search: `${row.year}_${row.quarter}_${row.first_name}_${row.last_name}`,
                                     },
                                 );
+                            if (data[0] === undefined) {
+                                return {
+                                    year: row.year,
+                                    quarter: row.quarter,
+                                    professor: `${row.first_name} ${row.last_name}`,
+                                };
+                            }
 
-                            const pdf_key = data[0]?.name;
+                            const pdf_key = `${course_major}_${course_number}_${course_title.replaceAll(" ", "-")}/${data[0]?.name}`;
                             return {
                                 year: row.year,
                                 quarter: row.quarter,
