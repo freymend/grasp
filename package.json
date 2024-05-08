@@ -19,7 +19,7 @@
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",
     "@supabase/supabase-js": "^2.42.7",
-    "fastify": "^4.26.2"
+    "fastify": "^4.27.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
