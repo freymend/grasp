@@ -27,6 +27,7 @@ async function routes(fastify, _) {
                                 course_major: { type: "string" },
                                 course_number: { type: "string" },
                                 course_title: { type: "string" },
+                                course_description: { type: "string" },
                             },
                         },
                     },
@@ -37,7 +38,9 @@ async function routes(fastify, _) {
         async (request, reply) => {
             const { data, error } = await supabase
                 .from("courses")
-                .select("course_major, course_number, course_title");
+                .select(
+                    "course_major, course_number, course_title, course_description",
+                );
             if (error) {
                 reply.status(500);
                 return error;
