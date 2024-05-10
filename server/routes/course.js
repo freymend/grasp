@@ -40,7 +40,8 @@ async function routes(fastify, _) {
                 .from("courses")
                 .select(
                     "course_major, course_number, course_title, course_description",
-                );
+                )
+                .order("course_number", { ascending: true });
             if (error) {
                 reply.status(500);
                 return error;
